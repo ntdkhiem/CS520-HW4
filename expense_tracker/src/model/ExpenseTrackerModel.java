@@ -13,11 +13,18 @@ public class ExpenseTrackerModel {
   // This is applying the Observer design pattern.                          
   // Specifically, this is the Observable class. 
     
+  /**
+   * Constructs an ExpenseTrackerModel object with no transactions.
+   */
   public ExpenseTrackerModel() {
     transactions = new ArrayList<Transaction>();
     matchedFilterIndices = new ArrayList<Integer>();
   }
 
+  /**
+   * Add new transaction to ExpenseTrackerModel object.
+   * @param t The transactions to be added to the model.
+   */
   public void addTransaction(Transaction t) {
     // Perform input validation to guarantee that all transactions added are non-null.
     if (t == null) {
@@ -28,17 +35,29 @@ public class ExpenseTrackerModel {
     matchedFilterIndices.clear();
   }
 
+  /**
+   * Removes the given transaction from the model.
+   * @param t The transaction to be removed from the model.
+   */
   public void removeTransaction(Transaction t) {
     transactions.remove(t);
     // The previous filter is no longer valid.
     matchedFilterIndices.clear();
   }
 
+  /**
+   * Get the current transactions.
+   * @return Return a Set of current transactions.
+   */
   public List<Transaction> getTransactions() {
     //encapsulation - data integrity
     return Collections.unmodifiableList(new ArrayList<>(transactions));
   }
 
+  /**
+   * Set matched filter indicies.
+   * @param newMatchedFilterIndices The new matched filter indicies.
+   */
   public void setMatchedFilterIndices(List<Integer> newMatchedFilterIndices) {
       // Perform input validation
       if (newMatchedFilterIndices == null) {
@@ -54,6 +73,10 @@ public class ExpenseTrackerModel {
       this.matchedFilterIndices.addAll(newMatchedFilterIndices);
   }
 
+  /**
+   * Get matched filter indicies.
+   * @return Return a List of matched filter indicies.
+   */
   public List<Integer> getMatchedFilterIndices() {
       // For encapsulation, copy out the output list
       List<Integer> copyOfMatchedFilterIndices = new ArrayList<Integer>();
